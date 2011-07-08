@@ -1,0 +1,13 @@
+Info: $action.getInfoStr()
+
+<form action="AOExampleAction!create.jspa" method="post">
+  <input type="submit" name="Create" value="Create" />
+</form>
+<br/>
+
+<form action="AOExampleAction!select.jspa" method="post">
+  <input type="text" name="selectid" value="">
+  <input type="submit" name="Select" value="Select" />
+</form>
+<br/>
+

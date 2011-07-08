@@ -1,0 +1,43 @@
+#if ($value)
+  #if ($value.size() > 0)
+
+  <table width="50%">
+
+  <tr width="15%">
+    <td>
+      Amount
+    </td>
+    <td>
+      Note 
+      ## Debugging: collection: $value.iterator().next().getClass().getName()
+    </td>
+  </tr>
+  
+  #if ($!issue)
+    ## issue exists so the value is a transport of string values, 
+    ## not a transport object of the singular objects. We want more than just 
+    ## strings so access the transport object directly from the customfield
+
+    #set ($carriers = $customField.getValue($issue))
+  #else
+    ## issue does not exist because we are displaying a default value
+    ## and so value is a Collection of Carrier objects.
+
+    #set ($carriers = $value)
+  #end
+
+  #foreach ($carrier in $carriers) 
+    <tr>
+      <td>
+        $!carrier.getAmount()
+      </td>
+
+      <td>
+        $!carrier.getNote()
+      </td>
+    </tr>
+  #end
+
+  </table>
+  #end
+#end

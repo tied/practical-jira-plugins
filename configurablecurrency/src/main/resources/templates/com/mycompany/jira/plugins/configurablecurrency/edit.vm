@@ -1,0 +1,10 @@
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+#set($configObj = $configs.get("currencyconfig"))
+#set ($currencySymbol = $configObj.get("currencySymbol"))
+$currencySymbol
+<input style="width:200px"
+       id="$customField.id" 
+       name="$customField.id" 
+       type="text" 
+       value="$textutils.htmlEncode($!value)" />
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)

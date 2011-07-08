@@ -1,0 +1,8 @@
+#if ($value)
+    #foreach ($singleValue in $value)
+<customfieldvalue>
+  <amount>$!singleValue.getAmount()</amount>
+  <text>$!singleValue.getNote()</text>
+</customfieldvalue>
+    #end
+#end

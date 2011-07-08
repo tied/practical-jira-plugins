@@ -1,0 +1,7 @@
+This text comes from the input-parameters Velocity template file.<br/>
+No actual value exists yet.<br/>
+<tr>
+  <td>
+    <input type="text" name="mycurrentvalue" value="some default"/>
+  </td>
+</tr>

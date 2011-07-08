@@ -1,0 +1,83 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+                  name="${project.name}"
+                  plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" 
+                url="${project.organization.url}" />
+    </plugin-info>
+
+    <!-- TODO should be "currency-field" -->
+    <customfield-type key="currency" 
+                      name="Currency"
+                      class="com.mycompany.jira.plugins.currency.CurrencyCFType">
+      <description>
+        A custom field type for currency.
+      </description>
+      
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/currency/view.vm"/>
+      <resource type="velocity" 
+                name="edit" 
+           location="templates/com/mycompany/jira/plugins/currency/edit.vm"/>
+    </customfield-type>
+
+    <customfield-searcher key="currencysearcher" 
+                          name="Currency Searcher"
+                          class="com.mycompany.jira.plugins.currency.searchers.CurrencySearcher">
+      <description>
+        Allow searching for a currency value.
+      </description>
+      <resource type="velocity" 
+                name="search" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/search.vm"/>
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/summary.vm"/>
+
+      <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
+                              key="currency"/>
+    </customfield-searcher>
+
+    <customfield-searcher key="advancedcurrencysearcher" 
+                          name="Advanced Currency Searcher"
+                          class="com.mycompany.jira.plugins.currency.searchers.CurrencyAdvancedSearcher">
+      <description>
+        Allow searching for a currency value that was added to indexes
+        in a more advanced manner.
+      </description>
+      <resource type="velocity" 
+                name="search" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/search.vm"/>
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/summary.vm"/>
+
+      <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
+                              key="currency"/>
+    </customfield-searcher>
+
+    <customfield-searcher key="stattablecurrencysearcher" 
+                          name="Stattable Currency Searcher"
+                          class="com.mycompany.jira.plugins.currency.searchers.CurrencyStattableSearcher">
+      <description>
+        Allow searching for a currency value and statistics of the results.
+      </description>
+      <resource type="velocity" 
+                name="search" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/search.vm"/>
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/currency/searchers/summary.vm"/>
+
+      <resource type="velocity" 
+                name="label" 
+                location="templates/com/mycompany/jira/plugins/currency/searchers/label.vm"/>
+
+      <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
+                              key="currency"/>
+    </customfield-searcher>
+
+</atlassian-plugin>

@@ -1,0 +1,46 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+                  name="${project.name}"
+                  plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" 
+                url="${project.organization.url}" />
+    </plugin-info>
+
+    <customfield-type key="multiple" 
+                      name="Multiple Values Example"
+                      class="com.mycompany.jira.plugins.multiple.MultipleValuesCFType">
+      <description>
+        A custom field type to show how multiple values can be stored.
+      </description>
+      
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/multiple/view.vm"/>
+      <resource type="velocity" 
+                name="edit" 
+           location="templates/com/mycompany/jira/plugins/multiple/edit.vm"/>
+      <resource type="velocity" 
+                name="xml" 
+           location="templates/com/mycompany/jira/plugins/multiple/xml.vm"/>
+    </customfield-type>
+
+    <customfield-searcher key="multiplevaluessearcher" 
+                          name="Multple Values Searcher"
+                          class="com.mycompany.jira.plugins.multiple.searchers.MultipleValuesSearcher">
+      <description>
+        Allow searching in a multiple value field.
+      </description>
+      <resource type="velocity" 
+                name="search" 
+           location="templates/com/mycompany/jira/plugins/multiple/searchers/search.vm"/>
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/multiple/searchers/summary.vm"/>
+
+      <valid-customfield-type package="com.mycompany.jira.plugins.multiplevalues" 
+                              key="TODO_NOT_YET_WORKING_multiple"/>
+    </customfield-searcher>
+
+</atlassian-plugin>

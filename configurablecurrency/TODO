@@ -1,0 +1,28 @@
+TODO
+
+Refactor locale str parsing into two methods
+
+Fix return to custom field configuration from edit-config
+
+Default value is not shown
+
+
+DONE
+
+Useful text sometime?
+
+DefaultValueConfigItem.java leads to EditCustomFieldDefaults!default.jspa
+actions.xml leads to EditCustomFieldDefaults and editcustomfield-default.jsp
+editcustomfield-default.jsp leads to EditCustomFieldDefaults.getCustomFieldHtml()
+
+getCustomFieldHtml adds defaultScreen=true and objectValue=CustomFieldType.getDefaultValue(config) to what becomes displayParameters in the Velocity context and then leads to CustomFieldTypeModuleDescriptor.java.getEditDefaultHtml()
+
+Which says that there can be a Velocity resource edit-default for the HTML used for the editing a default screen
+The parameters it uses are the usual ones from CustomFieldUtils.buildParams such as value and CustomFieldType.getVelocityParameters() and configs
+
+
+2. View Default doesn't have the currencyLocale so is empty
+
+The problem is that configs is not passed into the view resource
+Also would be help to have getVelocityParams called
+

@@ -1,0 +1,8 @@
+#if ($value)
+    #if ($currencyLocale)
+      $!numberTool.format('currency', $value, $currencyLocale)
+    #else
+      ## This is true when displaying the current default value
+      $!numberTool.format($value)
+    #end
+#end

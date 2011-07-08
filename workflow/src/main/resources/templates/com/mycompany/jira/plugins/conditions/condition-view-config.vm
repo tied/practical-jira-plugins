@@ -1,0 +1,3 @@
+## This template is for the configurable condition
+This text comes from the view Velocity resource.<br/>
+mycurrentvalue = ${mycurrentvalue}

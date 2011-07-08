@@ -1,0 +1,7 @@
+This text comes from the edit-parameters Velocity template file.<br/>
+<tr>
+  <td>
+    <input type="text" name="mycurrentvalue" value="$!mycurrentvalue"/>
+  </td>
+</tr>
+

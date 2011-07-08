@@ -1,0 +1,5 @@
+#searcherHeader ($customField)
+#if ($value)
+  $!numberTool.format('currency', $value)
+#end
+#searcherFooter ($customField)

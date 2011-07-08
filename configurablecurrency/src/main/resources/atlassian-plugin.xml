@@ -1,0 +1,42 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+                  name="${project.name}"
+                  plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" 
+                url="${project.organization.url}" />
+    </plugin-info>
+
+    <customfield-type key="configurablecurrency" 
+                      name="Configurable Currency"
+                      class="com.mycompany.jira.plugins.currency.CurrencyCFType">
+      <description>
+        A configurable custom field type for currency.
+      </description>
+      
+      <resource type="velocity" 
+                name="view" 
+           location="templates/com/mycompany/jira/plugins/configurablecurrency/view.vm"/>
+      <resource type="velocity" 
+                name="edit" 
+           location="templates/com/mycompany/jira/plugins/configurablecurrency/edit.vm"/>
+    </customfield-type>
+
+    <webwork1 key="currencyconfigaction" 
+              name="Currency configuration action" 
+              class="java.lang.Object">
+      <description>
+        The action for editing a currency custom field type configuration.
+      </description>
+
+      <actions>
+        <action name="com.mycompany.jira.plugins.currency.EditConfiguration" 
+                alias="EditCurrencyConfig">
+          <view name="input">/templates/com/mycompany/jira/plugins/configurablecurrency/edit-config.vm</view>
+          <view name="securitybreach">/secure/views/securitybreach.jsp</view>
+        </action>
+      </actions>
+    </webwork1>
+
+</atlassian-plugin>

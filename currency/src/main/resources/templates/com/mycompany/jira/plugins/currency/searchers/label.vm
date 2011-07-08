@@ -1,0 +1,9 @@
+#if ($value)
+  #set ($cfContext = $customField.getCustomFieldType().getVelocityParameters(null, field, null) )
+  #set ($numberTool = $cfContext.get("numberTool"))
+#if ($urlPrefix && $urlPrefix != '')
+    <a href="${urlPrefix}">$!numberTool.format('currency', $value)</a>
+#else
+    $!numberTool.format('currency', $value)
+#end
+#end

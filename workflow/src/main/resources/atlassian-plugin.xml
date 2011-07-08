@@ -1,0 +1,142 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}" />
+  </plugin-info>
+
+  <!-- The condition examples -->
+
+  <workflow-condition key="custom-noconfig-condition" 
+                      name="A Custom Condition With No Configuration"
+                      class="com.mycompany.jira.plugins.workflow.WorkflowNoInputConditionFactoryImpl">
+    
+    <description>
+      A condition with no configuration.
+    </description>
+    
+    <condition-class>
+      com.mycompany.jira.plugins.conditions.ConditionNoConfig
+    </condition-class>
+    
+    <resource type="velocity" 
+              name="view"
+              location="templates/com/mycompany/jira/plugins/conditions/condition-view.vm"/>
+  </workflow-condition>
+
+  <workflow-condition key="custom-config-condition" 
+                      name="A Custom Condition With Configuration"
+                      class="com.mycompany.jira.plugins.workflow.WorkflowWithInputConditionFactoryImpl">
+    
+    <description>
+      A condition that also has some configuration.
+    </description>
+    
+    <condition-class>
+      com.mycompany.jira.plugins.conditions.ConditionWithConfig
+    </condition-class>
+    
+    <resource type="velocity" 
+              name="view"
+              location="templates/com/mycompany/jira/plugins/conditions/condition-view-config.vm"/>
+    <resource type="velocity" 
+              name="input-parameters"
+              location="templates/com/mycompany/jira/plugins/conditions/condition-edit.vm"/>
+    <resource type="velocity" 
+              name="edit-parameters"
+              location="templates/com/mycompany/jira/plugins/conditions/condition-edit.vm"/>
+  </workflow-condition>
+
+  <!-- The validator examples -->
+
+  <workflow-validator key="custom-noconfig-validator"
+                      name="A Custom Validator With No Configuration"
+                      class="com.mycompany.jira.plugins.workflow.WorkflowNoInputValidatorFactoryImpl">
+    <description>
+      Check that a date field is not in the past.
+    </description>
+
+    <validator-class>
+      com.mycompany.jira.plugins.validators.ValidatorNoConfig
+    </validator-class>
+
+    <resource type="velocity" 
+              name="view" 
+              location="templates/com/mycompany/jira/plugins/validators/validator-view.vm"/>
+  </workflow-validator>
+
+  <workflow-validator key="custom-config-validator"
+                      name="A Custom Validator With Configuration"
+                      class="com.mycompany.jira.plugins.workflow.WorkflowWithInputValidatorFactoryImpl">
+    <description>
+      Check that a date field is at least a configurable number of
+      days in the future.
+    </description>
+
+    <validator-class>
+      com.mycompany.jira.plugins.validators.ValidatorWithConfig
+    </validator-class>
+
+    <resource type="velocity" 
+              name="view" 
+              location="templates/com/mycompany/jira/plugins/validators/validator-view-config.vm"/>
+    <resource type="velocity" 
+              name="input-parameters" 
+              location="templates/com/mycompany/jira/plugins/validators/validator-input.vm"/>
+    <resource type="velocity" 
+              name="edit-parameters" 
+              location="templates/com/mycompany/jira/plugins/validators/validator-edit.vm"/>
+  </workflow-validator>
+
+  <!-- The post-function examples -->
+
+  <workflow-function key="custom-noconfig-postfunction" 
+                     name="A Custom Post-Function with No Configuration" 
+                     class="com.atlassian.jira.plugin.workflow.WorkflowNoInputPluginFactory">
+    <description>
+      A custom post-function with no configuration.
+    </description>
+    
+    <function-class>
+      com.mycompany.jira.plugins.functions.FunctionNoConfig
+    </function-class>
+
+    <!-- "The weight and default parameters for workflow functions 
+         should not be used by plugin authors and should be considered 
+         reserved for JIRA's use." -->
+    <orderable>true</orderable>
+    <unique>false</unique>
+    <deletable>true</deletable>
+    
+    <resource type="velocity" 
+              name="view" 
+              location="templates/com/mycompany/jira/plugins/functions/function-view.vm"/>
+  </workflow-function>
+  
+  <workflow-function key="custom-config-postfunction" 
+                     name="A Custom Post-Function with Configuration" 
+                     class="com.mycompany.jira.plugins.workflow.WorkflowWithInputPostfunctionFactoryImpl">
+    <description>
+      A custom post-function with configuration.
+    </description>
+    
+    <function-class>
+      com.mycompany.jira.plugins.functions.FunctionWithConfig
+    </function-class>
+
+    <orderable>true</orderable>
+    <unique>false</unique>
+    <deletable>true</deletable>
+    
+    <resource type="velocity" 
+              name="view" 
+              location="templates/com/mycompany/jira/plugins/functions/function-view-config.vm"/>
+    <resource type="velocity" 
+              name="input-parameters" 
+              location="templates/com/mycompany/jira/plugins/functions/function-edit.vm"/>
+    <resource type="velocity" 
+              name="edit-parameters" 
+              location="templates/com/mycompany/jira/plugins/functions/function-edit.vm"/>
+  </workflow-function>
+
+</atlassian-plugin>

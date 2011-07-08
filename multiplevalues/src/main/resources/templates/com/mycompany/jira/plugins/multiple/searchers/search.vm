@@ -1,0 +1,9 @@
+## TODO ? this produces errors such as VM error : customControlHeader. Null AST
+
+
+$!{auiparams.put("controlHeaderClass", "aui-field-text")}
+#searcherEditHeader (${customField.id} ${customField.name})
+Amount <input class="text" id="amount-$customField.id" name="$customField.id" #if ($configs.styles.style) style="$configs.styles.style"#end type="text" value="$textutils.htmlEncode($!value.getAmount())" />
+Note <input class="text" id="note-$customField.id" name="$customField.id" #if ($configs.styles.style) style="$configs.styles.style"#end type="text" value="$textutils.htmlEncode($!value.getNote())" />
+#searcherEditFooter (${customField.id} ${customField.description})
+$!{auiparams.clear()}

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>$i18n.getText('common.words.configure') $action.getCustomField().getName()</title>
+    <meta content="admin" name="decorator" />
+    <link rel="stylesheet" type="text/css" media="print"
+	  href="/styles/combined-printable.css">
+      <link type="text/css" rel="StyleSheet" media="all" href="/styles/combined.css"/>
+  </head>
+
+  <body>
+
+<h2 class="formtitle">
+  $i18n.getText('common.words.configure') $action.getCustomField().getName()
+</h2>
+
+<p>
+  Select a currency for displaying the value of the currency field.
+</p>
+
+<form action="EditCurrencyConfig.jspa" method="post">
+  
+  <table>
+    <tr>
+      <td>
+        Currency:&nbsp;
+      </td>
+
+      <td>
+        <select id="localestr" name="localestr">
+          #set ($currencyOptions = $action.getCurrencies())
+          #foreach ($currencyOption in $currencyOptions)
+            #set ($localeId = $currencyOption.getId())
+            <option value="$localeId"
+                    #if ($action.isSelected($localeId)) selected #end
+                    >
+              $currencyOption.getDisplayValue()
+            </option>
+          #end
+        </select>
+      </td>
+
+      <td>
+        &nbsp;
+	<input type="submit" 
+               name="Save" 
+               id="Save" 
+               value="$i18n.getText('common.words.save')"
+               accesskey="S"
+               title="Press Ctrl+S to submit form"
+               class="spaced"
+               />
+      </td>
+    </tr>
+
+  </table>
+
+  ## Used by the parent class AbstractEditConfigurationItemAction
+  <input type="hidden" name="fieldConfigId" value="$fieldConfigId">
+
+</form>
+
+  </body>
+</html>

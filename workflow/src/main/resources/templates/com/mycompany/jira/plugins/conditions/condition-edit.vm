@@ -1,0 +1,7 @@
+## The same Velocity template file is used by the input-parameters and
+## edit-parameters resources in this example.
+<tr>
+  <td>
+    <input type="text" name="mycurrentvalue" value="$!mycurrentvalue"/>
+  </td>
+</tr>
