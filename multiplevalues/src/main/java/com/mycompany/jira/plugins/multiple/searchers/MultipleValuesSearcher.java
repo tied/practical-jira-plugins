@@ -4,8 +4,6 @@ import com.atlassian.jira.issue.customfields.searchers.*;
 
 import com.atlassian.jira.issue.customfields.CustomFieldSearcher;
 import com.atlassian.jira.issue.customfields.CustomFieldValueProvider;
-// TODO one change
-//import com.atlassian.jira.issue.customfields.SingleValueCustomFieldValueProvider;
 import com.atlassian.jira.issue.customfields.MultiSelectCustomFieldValueProvider;
 
 import com.atlassian.jira.issue.customfields.SortableCustomFieldSearcher;
@@ -39,8 +37,10 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * NOTE: this searcher is not working yet.
+ *
  * A searcher for custom fields that contain multiple values.
- * TODO use a new class for comparing Carrier objects.
+ * Use a new class for comparing Carrier objects.
  */
 public class MultipleValuesSearcher  extends AbstractInitializationCustomFieldSearcher
         implements CustomFieldSearcher, SortableCustomFieldSearcher
@@ -80,7 +80,7 @@ public class MultipleValuesSearcher  extends AbstractInitializationCustomFieldSe
         this.searcherInformation = new CustomFieldSearcherInformation(field.getId(), field.getNameKey(), Collections.<FieldIndexer>singletonList(indexer), new AtomicReference<CustomField>(field));
         this.searchRenderer = new CustomFieldRenderer(names, getDescriptor(), field, customFieldValueProvider, fieldVisibilityManager);
 
-	// TODO definitely wrong class. See Multi for the changes
+	// TODO definitely the wrong class. See Multi for the changes
         this.searchInputTransformer = new ExactTextCustomFieldSearchInputTransformer(field, names, searcherInformation.getId(), customFieldInputHelper);
 
         final Set<Operator> supportedOperators = OperatorClasses.EQUALITY_OPERATORS_WITH_EMPTY;

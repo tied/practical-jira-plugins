@@ -1,7 +1,10 @@
 TODO
 
-Useful output for validators
+None
 
+Notes:
+
+Useful output for validators:
 
         log.debug("transientVars = " + transientVars);
         // 2011-04-12 05:44:53,052 http-8080-1 DEBUG admin 344x94x1 pthyca 0:0:0:0:0:0:0:1%0 /secure/CommentAssignIssue.jspa [jira.plugins.validators.DateValidator] transientVars = {commentLevel=null, store=com.opensymphony.workflow.spi.ofbiz.OfbizWorkflowStore@38559e4f, descriptor=com.atlassian.jira.workflow.ImmutableWorkflowDescriptor@7d0c716d, pkey=ABC, issue=ABC-2, roleLevel=null, currentSteps=[SimpleStep@1[owner=, actionId=0, status=Open]], project=[GenericEntity:Project][id,10010][description,][counter,2][name,ABC][lead,admin][avatar,10011][assigneetype,2][key,ABC][url,], username=admin, entry=com.opensymphony.workflow.spi.SimpleWorkflowEntry@3beaeb3e, context=com.opensymphony.workflow.basic.BasicWorkflowContext@3bfa522d, actionId=5, originalissueobject=ABC-2, comment=Comment goes here, configuration=com.opensymphony.workflow.config.DefaultConfiguration@2f29271e}

@@ -1,7 +1,34 @@
-<atlassian-plugin key="com.mycompany.jira.plugins.aoexample2" name="aoexample2" plugins-version="2">
+<atlassian-plugin key="com.mycompany.jira.plugins.aoexample" name="AO Example" plugins-version="2">
     <plugin-info>
-        <description>This is the com.mycompany.jira.plugins:aoexample2 plugin for Atlassian JIRA.</description>
-        <version>0.1</version>
-        <vendor name="Example Company" url="http://www.example.com/" />
+        <description>An example to demonstrate the use of Active Objects</description>
+        <version>4.4.0</version>
+        <vendor name="Practical JIRA Development" url="https://plugins.atlassian.com/manage/plugin/41293" />
     </plugin-info>
+
+    <ao key="address-ao">
+      <description>The AO interface for storing Address objects.</description>
+      <entity>com.mycompany.jira.plugins.aoexample.Address</entity>
+    </ao>
+
+    <component-import key="ao" name="Active Objects components"
+                      interface="com.atlassian.activeobjects.external.ActiveObjects">
+      <description>Access to the Active Objects service</description>
+    </component-import>
+
+    <webwork1 key="exampleaction" 
+              name="Example action" 
+              class="java.lang.Object">
+      <description>
+        An example action
+      </description>
+
+      <actions>
+        <action name="com.mycompany.jira.plugins.aoexample.AOExampleAction" 
+                alias="AOExampleAction">
+          <view name="success">/templates/com/mycompany/jira/plugins/aoexample/view.vm</view>
+          <view name="securitybreach">/secure/views/securitybreach.jsp</view>
+        </action>
+      </actions>
+    </webwork1>
+
 </atlassian-plugin>

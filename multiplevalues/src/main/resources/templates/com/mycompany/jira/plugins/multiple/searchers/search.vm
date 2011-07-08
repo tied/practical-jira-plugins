@@ -1,5 +1,4 @@
-## TODO ? this produces errors such as VM error : customControlHeader. Null AST
-
+## NOT YET WORKING This produces errors such as VM error : customControlHeader. Null AST
 
 $!{auiparams.put("controlHeaderClass", "aui-field-text")}
 #searcherEditHeader (${customField.id} ${customField.name})

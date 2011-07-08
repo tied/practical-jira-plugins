@@ -36,8 +36,6 @@ public class AOExampleAction extends JiraWebActionSupport {
             return ERROR;
         }
         Address address = addresses[0];
-        // TODO or just use the id
-        // Address address = ao.get(Address.class, Integer.parseInt(selectid));
         setInfo(address.getID());
         return SUCCESS;
     }

@@ -8,8 +8,7 @@
                 url="${project.organization.url}" />
     </plugin-info>
 
-    <!-- TODO should be "currency-field" -->
-    <customfield-type key="currency" 
+    <customfield-type key="currency-field" 
                       name="Currency"
                       class="com.mycompany.jira.plugins.currency.CurrencyCFType">
       <description>
@@ -38,7 +37,7 @@
            location="templates/com/mycompany/jira/plugins/currency/searchers/summary.vm"/>
 
       <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
-                              key="currency"/>
+                              key="currency-field"/>
     </customfield-searcher>
 
     <customfield-searcher key="advancedcurrencysearcher" 

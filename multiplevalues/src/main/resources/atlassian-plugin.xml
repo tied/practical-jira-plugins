@@ -40,7 +40,7 @@
            location="templates/com/mycompany/jira/plugins/multiple/searchers/summary.vm"/>
 
       <valid-customfield-type package="com.mycompany.jira.plugins.multiplevalues" 
-                              key="TODO_NOT_YET_WORKING_multiple"/>
+                              key="NOT_YET_WORKING_multiple"/>
     </customfield-searcher>
 
 </atlassian-plugin>

@@ -63,9 +63,11 @@ public class CurrencyAdvancedSearcher extends AbstractInitializationCustomFieldS
         // 1. Create the SearcherInformation object
         // This inserts the new value "Small" into the Lucene index
         final FieldIndexer indexer = new CurrencyCustomFieldIndexer(fieldVisibilityManager, field, doubleConverter);
+        // This shouldn't need to change for different searchers
         this.searcherInformation = new CustomFieldSearcherInformation(field.getId(), field.getNameKey(), Collections.<FieldIndexer>singletonList(indexer), new AtomicReference<CustomField>(field));
 
-        // 2. Create the SearchInputTransformer object
+        // 2. Create the SearchInputTransformer object. See that 
+        // interface for more information.
         final ClauseNames names = field.getClauseNames();
         this.searchInputTransformer = new ExactNumberCustomFieldSearchInputTransformer(field, names, searcherInformation.getId(), customFieldInputHelper);
 
@@ -73,9 +75,12 @@ public class CurrencyAdvancedSearcher extends AbstractInitializationCustomFieldS
         final CustomFieldValueProvider customFieldValueProvider = new SingleValueCustomFieldValueProvider();
         this.searchRenderer = new CustomFieldRenderer(names, getDescriptor(), field, customFieldValueProvider, fieldVisibilityManager);
 
-        // TODO this is harder to change because com.atlassian.jira.jql.validator.IndexValuesValidator is not a public class.
+        // 4. Create the clause handler.
         // This converts what comes from the web page to the String that is
         // searched for in the Lucene index
+        // This class is harder to change because
+        // com.atlassian.jira.jql.validator.IndexValuesValidator is
+        // not a public class.
         final CurrencyIndexValueConverter indexValueConverter = new CurrencyIndexValueConverter(doubleConverter);
         this.customFieldSearcherClauseHandler = new SimpleCustomFieldSearcherClauseHandler(
            new NumberCustomFieldValidator(jqlOperandResolver, indexValueConverter),

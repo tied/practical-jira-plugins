@@ -73,7 +73,9 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         String[] parts = dbValue.split(DB_SEP);
         if (parts.length == 0 || parts.length > 2) {
             log.warn("Invalid database value for MultipleValuesCFType ignored: " + dbValue);
-            return null; // TODO should this be a FieldValidationException?
+            // If this should not be allowed, then throw a
+            // FieldValidationException instead
+            return null;
         }
         Double d = new Double(parts[0]);
         String s = "";
@@ -260,9 +262,9 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         StringBuffer sb = new StringBuffer();
         Collection<Carrier> carriers = (Collection<Carrier>) value;
         for (Carrier carrier: carriers) {
-            // TODO a better representation is needed for this
             sb.append(carrier.toString()); 
-            sb.append(", "); // TODO newline in text, not HTML?
+            // Newlines are text not HTML here
+            sb.append(", ");
                         
         }
         return sb.toString();

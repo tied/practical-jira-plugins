@@ -1,16 +1,15 @@
 TODO
 
-Use the right user id when committing to Mercurial.
-
 Symbol appears on the left for all reading directions in
 edit. NumberFormat.format() for Currency decides this.
 
 Any m or k suffix is not preserved when you edit the field again
 
-
 DONE
 
-form.aui reduces text class from 90% to 250px in edit, but in editing the default the width is 90%. In Number Field, long-field class reduces it to 500px. Just changed it to a CSS style 200px
+form.aui reduces text class from 90% to 250px in edit, but in editing
+the default the width is 90%. In Number Field, long-field class
+reduces it to 500px. Just changed it to a CSS style 200px
 
 m and k suffix appear to work in the default but is not applied? No,
 it is, but not in an issue you are part way through creating

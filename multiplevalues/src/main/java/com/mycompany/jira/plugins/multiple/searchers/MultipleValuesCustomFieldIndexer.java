@@ -51,7 +51,6 @@ public class MultipleValuesCustomFieldIndexer extends AbstractCustomFieldIndexer
 	    for (Carrier carrier: carriers) {
 		String amountStr = carrier.getAmount().toString();
 		String noteStr = carrier.getNote();
-		// TODO should the ids have a suffix per field?
 		if (amountStr != null && !amountStr.equals("")) {
 		    doc.add(new Field(getDocumentFieldId(), amountStr, Field.Store.YES, indexType));
 		}

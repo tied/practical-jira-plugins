@@ -16,7 +16,8 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
     public EditConfiguration() {
     }
 
-    // TODO not used in the sample: @RequiresXsrfCheck
+    // This is not used in the sample but would be used in production
+    // @RequiresXsrfCheck
     protected void doValidation() {
         String lstr = getLocalestr();
         log.debug("Entering doValidation with " + lstr);
@@ -30,7 +31,8 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
         }
     }
 
-    // TODO not used in the sample: @RequiresXsrfCheck
+    // This is not used in the sample but would be used in production
+    // @RequiresXsrfCheck
     protected String doExecute() throws Exception {
         if (!isHasPermission(Permissions.ADMINISTER)) {
             return "securitybreach";
