@@ -62,26 +62,27 @@ public class CurrencyCustomFieldIndexer extends AbstractCustomFieldIndexer {
         /*
           getValue() calls the CustomFieldType getValueFromIssue method
           so this Object is the custom field's transport object. In this
-          case that is a String.
+          case that is a Double.
         */
         Object value = customField.getValue(issue);
         if (value == null) {
             return;
         }
+        Double dbl = (Double)value;
 
         // JIRA's Lucene indexes use Strings but not
         // necessarily the same as what
         // getStringFromSingularObject(value)
         // returns. Numbers are carefully formatted to use a
         // single format.
-        final String stringValue = doubleConverter.getStringForLucene((Double) value);
+        final String stringValue = doubleConverter.getStringForLucene(dbl);
         Field field = new Field(getDocumentFieldId(), 
                                 stringValue, 
                                 Field.Store.YES, 
                                 indexType);
         doc.add(field);
         
-        Double dbl = (Double)value;
+        // Add the extra information to the index
         if (dbl.doubleValue() < 10.0) {
             field = new Field(getDocumentFieldId(), 
                               SMALL,

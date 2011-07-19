@@ -41,14 +41,14 @@ public class ValidatorNoConfig implements Validator
                 throw new InvalidInputException("The validator failed to validate because it could not find the date custom field: " + fieldName);
             }
 
-            // This will also use the default value, if any
+            // This will use the default value, if any
             Date value = (Date) issue.getCustomFieldValue(cf);
             if (value == null) {
                 // The field was not set or was not present in the
                 // transition screen
                 return;
             }
-            log.debug("The updated issue has a custom field value of : " + value);
+            log.debug("The modified issue has a custom field value of : " + value);
 
             // Check that the date is in not in the past. Today is not
             // valid either.

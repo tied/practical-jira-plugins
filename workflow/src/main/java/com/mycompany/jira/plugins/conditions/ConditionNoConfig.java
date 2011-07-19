@@ -6,9 +6,7 @@ import com.opensymphony.user.User;
 import com.atlassian.jira.exception.DataAccessException;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.workflow.condition.AbstractJiraCondition;
-
 import java.util.Map;
-
 import org.apache.log4j.Logger;
 
 public class ConditionNoConfig extends AbstractJiraCondition {
@@ -34,7 +32,7 @@ public class ConditionNoConfig extends AbstractJiraCondition {
             // More logic would usually go here
             return true;
         } catch (DataAccessException e) {
-            log.warn("Failed to find the expected issue in the database");
+            log.warn("Failed to find the expected issue", e);
         }
         return false;
     }

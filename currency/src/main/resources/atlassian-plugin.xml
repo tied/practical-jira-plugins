@@ -12,7 +12,7 @@
                       name="Currency"
                       class="com.mycompany.jira.plugins.currency.CurrencyCFType">
       <description>
-        A custom field type for currency.
+        A custom field type for a currency.
       </description>
       
       <resource type="velocity" 
@@ -55,7 +55,7 @@
            location="templates/com/mycompany/jira/plugins/currency/searchers/summary.vm"/>
 
       <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
-                              key="currency"/>
+                              key="currency-field"/>
     </customfield-searcher>
 
     <customfield-searcher key="stattablecurrencysearcher" 
@@ -76,7 +76,7 @@
                 location="templates/com/mycompany/jira/plugins/currency/searchers/label.vm"/>
 
       <valid-customfield-type package="com.mycompany.jira.plugins.currency" 
-                              key="currency"/>
+                              key="currency-field"/>
     </customfield-searcher>
 
 </atlassian-plugin>

@@ -17,7 +17,8 @@ public class CurrencyConfigItem implements FieldConfigItemType {
         return "Currency";
     }
 
-    // This is the text seen in the field configuration screen
+    // This is the text shown in the field configuration screen
+    // or an i18n key for the text
     public String getDisplayNameKey() {
         return "Selected Currency";
     }
@@ -29,13 +30,13 @@ public class CurrencyConfigItem implements FieldConfigItemType {
         return DAO.getDisplayValue(locale);
     }
 
-    // The unique identifier for this kind of configuration, and the
-    // also key for the configs Map in edit.vm
+    // The unique identifier for this kind of configuration, and also the
+    // key for the $configs Map used in edit.vm
     public String getObjectKey() {
         return "currencyconfig";
     }
 
-    // Return the Object in the Velocity edit context in $configs
+    // Return the Object used in the Velocity edit context in $configs
     public Object getConfigurationObject(Issue issue, FieldConfig config) {
         Map result = new HashMap();
         result.put("currencyLocale", DAO.getCurrentLocale(config));

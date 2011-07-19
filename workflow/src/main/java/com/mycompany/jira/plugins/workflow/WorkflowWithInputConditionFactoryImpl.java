@@ -17,7 +17,7 @@ public class WorkflowWithInputConditionFactoryImpl
     protected void getVelocityParamsForView(Map velocityParams, 
                                             AbstractDescriptor descriptor) {
         if (!(descriptor instanceof ConditionDescriptor)) {
-            throw new IllegalArgumentException("Descriptor must be a ConditionDescriptor.");
+            throw new IllegalArgumentException("Descriptor must be a ConditionDescriptor");
         }
 
         ConditionDescriptor conditionDescriptor = (ConditionDescriptor) descriptor;

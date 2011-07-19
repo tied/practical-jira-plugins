@@ -16,8 +16,6 @@ public class FunctionNoConfig extends AbstractJiraFunctionProvider {
     public void execute(Map transientVars, 
                         Map args, 
                         PropertySet ps) throws WorkflowException {
-        // The issue is modified by changing the values in the transientVars
-        // which is processed later on after the post-function has finished.
         log.debug("The post-function is ready to do something");
         
         log.debug("transientVars contains:\n" + dumpMap(transientVars));

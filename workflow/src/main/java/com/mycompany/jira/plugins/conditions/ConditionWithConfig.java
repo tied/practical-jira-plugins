@@ -29,19 +29,19 @@ public class ConditionWithConfig extends AbstractJiraCondition {
                 return true;
             }
 
+            // As an example only show the workflow transition if the
+            // issue has a Fix Version that matches the configured
+            // value by name.
             Issue issue = getIssue(transientVars);
             Collection<Version> versions = issue.getFixVersions();
             for (Version version: versions) {
                 if (version.getName().equals(configparam)) {
-                    // Only show the workflow transition if the issue
-                    // has a Fix Version that matches the configured
-                    // value by name.
                     return true;
                 }
             }
             return false;
         } catch (DataAccessException e) {
-            log.warn("Failed to find the expected issue in the database");
+            log.warn("Failed to find the expected issue", e);
         }
         return false;
     }
