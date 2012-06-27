@@ -34,8 +34,7 @@ public class CurrencyCustomFieldIndexer extends AbstractCustomFieldIndexer {
      */
     public void addDocumentFieldsSearchable(final Document doc, 
                                             final Issue issue) {
-        // UN_TOKENIZED is an older Lucene name for NOT_ANALYZED
-        addDocumentFields(doc, issue, Field.Index.UN_TOKENIZED);
+        addDocumentFields(doc, issue, Field.Index.NOT_ANALYZED);
     }
 
     /**

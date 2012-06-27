@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany.jira.plugins</groupId>
     <artifactId>aoexample</artifactId>
-    <version>4.4.0</version>
+    <version>5.0.1</version>
 
     <organization>
         <name>Practical JIRA Development</name>
@@ -72,8 +72,8 @@
     </build>
 
     <properties>
-        <jira.version>4.4-beta1</jira.version>
-        <jira.data.version>4.4-beta1</jira.data.version>
+        <jira.version>5.0</jira.version>
+        <jira.data.version>5.0</jira.data.version>
     </properties>
 
 </project>

@@ -37,7 +37,7 @@ public class CurrencyCFType extends NumberCFType {
     /**
      * Handle the optional M and K suffixes.
      */
-    public Object getSingularObjectFromString(String numberString)  
+    public Double getSingularObjectFromString(String numberString)  
         throws FieldValidationException {
         log.debug("getSingularObjectFromString: " + numberString);
 

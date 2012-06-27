@@ -1,12 +1,12 @@
 package com.mycompany.jira.plugins.multiple.searchers;
 
-import com.atlassian.jira.issue.customfields.searchers.*;
-
+import com.atlassian.jira.JiraDataTypes;
 import com.atlassian.jira.issue.customfields.CustomFieldSearcher;
 import com.atlassian.jira.issue.customfields.CustomFieldValueProvider;
 import com.atlassian.jira.issue.customfields.MultiSelectCustomFieldValueProvider;
-
+import com.atlassian.jira.issue.customfields.SingleValueCustomFieldValueProvider;
 import com.atlassian.jira.issue.customfields.SortableCustomFieldSearcher;
+import com.atlassian.jira.issue.customfields.searchers.*;
 import com.atlassian.jira.issue.customfields.searchers.information.CustomFieldSearcherInformation;
 import com.atlassian.jira.issue.customfields.searchers.renderer.CustomFieldRenderer;
 import com.atlassian.jira.issue.customfields.searchers.transformer.CustomFieldInputHelper;
@@ -26,19 +26,15 @@ import com.atlassian.jira.jql.query.ActualValueCustomFieldClauseQueryFactory;
 import com.atlassian.jira.jql.util.IndexValueConverter;
 import com.atlassian.jira.jql.util.SimpleIndexValueConverter;
 import com.atlassian.jira.jql.validator.ExactTextCustomFieldValidator;
-import static com.atlassian.jira.util.dbc.Assertions.notNull;
-import com.atlassian.jira.web.bean.FieldVisibilityBean;
 import com.atlassian.jira.web.FieldVisibilityManager;
-import com.atlassian.jira.JiraDataTypes;
+import com.atlassian.jira.web.bean.FieldVisibilityBean;
 import com.atlassian.query.operator.Operator;
-
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+import static com.atlassian.jira.util.dbc.Assertions.notNull;
 
 /**
- * NOTE: this searcher is not working yet.
- *
  * A searcher for custom fields that contain multiple values.
  * Use a new class for comparing Carrier objects.
  */
@@ -70,24 +66,28 @@ public class MultipleValuesSearcher  extends AbstractInitializationCustomFieldSe
     {
         final ClauseNames names = field.getClauseNames();
         final FieldIndexer indexer = new MultipleValuesCustomFieldIndexer(fieldVisibilityManager, field);
+
 	// TODO wrong class? Converts the raw QueryLiteral to the Lucene value
+        // AddressCustomFieldIndexValueConverter looks similar though
         final IndexValueConverter indexValueConverter = new SimpleIndexValueConverter(false);
 
-	// TODO wrong class, use one that returns a Collection
-        //final CustomFieldValueProvider customFieldValueProvider = new SingleValueCustomFieldValueProvider();
-        final CustomFieldValueProvider customFieldValueProvider = new MultiSelectCustomFieldValueProvider();
+	// TODO wrong class, use one that returns a Collection?
+        final CustomFieldValueProvider customFieldValueProvider = new SingleValueCustomFieldValueProvider();
+        //final CustomFieldValueProvider customFieldValueProvider = new MultiSelectCustomFieldValueProvider();
 
         this.searcherInformation = new CustomFieldSearcherInformation(field.getId(), field.getNameKey(), Collections.<FieldIndexer>singletonList(indexer), new AtomicReference<CustomField>(field));
         this.searchRenderer = new CustomFieldRenderer(names, getDescriptor(), field, customFieldValueProvider, fieldVisibilityManager);
 
-	// TODO definitely the wrong class. See Multi for the changes
-        this.searchInputTransformer = new ExactTextCustomFieldSearchInputTransformer(field, names, searcherInformation.getId(), customFieldInputHelper);
+        this.searchInputTransformer = new MultipleValuesCustomFieldSearchInputTransformer(field, names, searcherInformation.getId(), customFieldInputHelper);
 
+        // This Set is also checked for in the Validator class
         final Set<Operator> supportedOperators = OperatorClasses.EQUALITY_OPERATORS_WITH_EMPTY;
-	// TODO wrong validator? Actually probably ok, maybe not though
-        this.customFieldSearcherClauseHandler = new SimpleCustomFieldSearcherClauseHandler(new ExactTextCustomFieldValidator(),
-                       new ActualValueCustomFieldClauseQueryFactory(field.getId(), jqlOperandResolver, indexValueConverter, false),
-                supportedOperators, JiraDataTypes.TEXT);
+        // There was a problem in 4.2 with using a different validator
+        // is that the SearcherClauseHandler has the validator's class
+        // embedded in it.
+        this.customFieldSearcherClauseHandler = new SimpleCustomFieldSearcherClauseHandler(new MultipleValuesCustomFieldValidator(),
+                                                                                           new ActualValueCustomFieldClauseQueryFactory(field.getId(), jqlOperandResolver, indexValueConverter, false),
+                                                                                           supportedOperators, JiraDataTypes.TEXT);
     }
 
     public SearcherInformation<CustomField> getSearchInformation()

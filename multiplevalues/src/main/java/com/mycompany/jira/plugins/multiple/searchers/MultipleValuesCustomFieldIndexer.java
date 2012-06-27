@@ -52,6 +52,9 @@ public class MultipleValuesCustomFieldIndexer extends AbstractCustomFieldIndexer
 		String amountStr = carrier.getAmount().toString();
 		String noteStr = carrier.getNote();
 		if (amountStr != null && !amountStr.equals("")) {
+                    // TODO need to add a suffix for each field that
+                    // is part of the Singular Object class, or at
+                    // least that is searched on
 		    doc.add(new Field(getDocumentFieldId(), amountStr, Field.Store.YES, indexType));
 		}
 		if (noteStr != null && !noteStr.equals("")) {

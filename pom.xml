@@ -10,7 +10,8 @@
     <module>aoexample</module>
     <module>configurablecurrency</module>
     <module>currency</module>
-    <module>multiplevalues</module>
     <module>workflow</module>
+    <!-- TODO Not ported to JIRA 5.0 -->
+    <!--    <module>multiplevalues</module> -->
   </modules>
 </project>

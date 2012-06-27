@@ -1,7 +1,7 @@
 <atlassian-plugin key="com.mycompany.jira.plugins.aoexample" name="AO Example" plugins-version="2">
     <plugin-info>
         <description>An example to demonstrate the use of Active Objects</description>
-        <version>4.4.0</version>
+        <version>5.0.1</version>
         <vendor name="Practical JIRA Development" url="https://plugins.atlassian.com/manage/plugin/41293" />
     </plugin-info>
 

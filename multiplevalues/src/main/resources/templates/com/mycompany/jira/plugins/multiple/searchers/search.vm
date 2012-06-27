@@ -1,5 +1,3 @@
-## NOT YET WORKING This produces errors such as VM error : customControlHeader. Null AST
-
 $!{auiparams.put("controlHeaderClass", "aui-field-text")}
 #searcherEditHeader (${customField.id} ${customField.name})
 Amount <input class="text" id="amount-$customField.id" name="$customField.id" #if ($configs.styles.style) style="$configs.styles.style"#end type="text" value="$textutils.htmlEncode($!value.getAmount())" />

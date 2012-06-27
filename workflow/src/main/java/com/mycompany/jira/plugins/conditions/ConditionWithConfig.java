@@ -1,15 +1,14 @@
 package com.mycompany.jira.plugins.conditions;
 
-import com.opensymphony.module.propertyset.PropertySet;
-import com.opensymphony.workflow.WorkflowException;
-import com.opensymphony.user.User;
+import com.atlassian.crowd.embedded.api.User;
 import com.atlassian.jira.exception.DataAccessException;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.project.version.Version;
 import com.atlassian.jira.workflow.condition.AbstractJiraCondition;
-
-import java.util.Map;
+import com.opensymphony.module.propertyset.PropertySet;
+import com.opensymphony.workflow.WorkflowException;
 import java.util.Collection;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 

@@ -213,6 +213,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
             Collection<Carrier> value = new ArrayList();
             for (Iterator it = values.iterator(); it.hasNext(); ) {
                 String dStr = (String)it.next();
+                // This won't be true if only one parameter is passed in a query
                 String s = (String)it.next();
                 // Allow empty text but not empty amounts
                 if (dStr == null || dStr.equals("")) {
