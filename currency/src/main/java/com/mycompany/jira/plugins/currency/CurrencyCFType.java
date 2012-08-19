@@ -62,7 +62,8 @@ public class CurrencyCFType extends NumberCFType {
         }
 
         // Use the parent's method to get the actual value of the field
-        Double value = (Double)super.getSingularObjectFromString(numberString);
+        // Prior to JIRA 5.0 this needed a cast
+        Double value = super.getSingularObjectFromString(numberString);
         // Adjust the value appropriately
         value = value * multiplier;
 

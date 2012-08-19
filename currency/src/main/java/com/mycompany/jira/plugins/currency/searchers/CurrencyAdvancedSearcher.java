@@ -31,6 +31,10 @@ import com.atlassian.jira.JiraDataTypes;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Allow searching for a currency value that was added to indexes in a
+ * more advanced manner.
+ */
 public class CurrencyAdvancedSearcher extends AbstractInitializationCustomFieldSearcher
         implements CustomFieldSearcher, SortableCustomFieldSearcher
 {
