@@ -11,7 +11,7 @@
     <module>configurablecurrency</module>
     <module>currency</module>
     <module>workflow</module>
-    <!-- TODO Not ported to JIRA 5.0 -->
-    <!--    <module>multiplevalues</module> -->
+    <!-- This searcher for this plugin was not ported to JIRA 5.1 -->
+    <module>multiplevalues</module>
   </modules>
 </project>

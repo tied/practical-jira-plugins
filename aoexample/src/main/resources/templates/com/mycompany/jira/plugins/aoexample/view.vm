@@ -1,13 +1,14 @@
-Info: $action.getInfoStr()
-
 <form action="AOExampleAction!create.jspa" method="post">
+  <p>Create an Address object with house number 10 in the AO database. Multiple instances will have unique IDs.</p>
   <input type="submit" name="Create" value="Create" />
 </form>
 <br/>
 
 <form action="AOExampleAction!select.jspa" method="post">
+  <p>Retrieve a value from the AO database with the given house number.</p>
   <input type="text" name="selectid" value="">
   <input type="submit" name="Select" value="Select" />
 </form>
 <br/>
 
+<p>Info: $action.getInfoStr()</p>

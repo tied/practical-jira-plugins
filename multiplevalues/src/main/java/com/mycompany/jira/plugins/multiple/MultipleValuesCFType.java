@@ -37,8 +37,14 @@ import com.atlassian.jira.issue.customfields.persistence.CustomFieldValuePersist
  * All the other Multi* classes refer to Users or Options. This class,
  * like VersionCFType, uses a different transport object, a Collection
  * of Carrier objects.
+ * 
+ * The changes for JIRA 5.0 mean that the transport and singular types
+ * have to be given as a parameter to AbstractCustomFieldType. Also
+ *
+ * More information can be found at
+ * "https://developer.atlassian.com/display/JIRADEV/Java+API+Changes+in+JIRA+5.0#JavaAPIChangesinJIRA50-CustomFieldTypes
  */
-public class MultipleValuesCFType extends AbstractCustomFieldType {
+public class MultipleValuesCFType extends AbstractCustomFieldType<Collection<Carrier>, Carrier> {
 
     public static final Logger log = Logger.getLogger(MultipleValuesCFType.class);
 
@@ -64,7 +70,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
      * Convert a database representation of a Carrier object into 
      * a Carrier object. This method is also used for bulk moves and imports.
      */
-    public Object getSingularObjectFromString(String dbValue)  
+    public Carrier getSingularObjectFromString(String dbValue)  
         throws FieldValidationException {
         log.debug("getSingularObjectFromString: " + dbValue);
         if (StringUtils.isEmpty(dbValue)) {
@@ -85,8 +91,8 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         return new Carrier(d, s);
     }
 
-    public Object getValueFromIssue(CustomField field,
-                                    Issue issue) {
+    public Collection<Carrier> getValueFromIssue(CustomField field,
+                                                 Issue issue) {
         // This is also called to display a default value in view.vm
         // in which case the issue is a dummy one with no key
         if (issue == null || issue.getKey() == null) {
@@ -95,13 +101,13 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         }
 
         // These are the database representation of the singular objects
-        final List<String> values = persister.getValues(field, issue.getId(), DB_TYPE);
+        final List<Object> values = persister.getValues(field, issue.getId(), DB_TYPE);
         log.debug("getValueFromIssue entered with " + values);
         if ((values != null) && !values.isEmpty()) {
             List<Carrier> result = new ArrayList<Carrier>();
             for (Iterator it = values.iterator(); it.hasNext(); ) {
                 String dbValue = (String)it.next();
-                Carrier carrier = (Carrier)getSingularObjectFromString(dbValue);
+                Carrier carrier = getSingularObjectFromString(dbValue);
                 if (carrier == null) {
                     continue;
                 }
@@ -113,18 +119,19 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         }
     }
 
-    public void createValue(CustomField field, Issue issue, Object value) {
+    public void createValue(CustomField field, Issue issue, Collection<Carrier> value) {
         if (value instanceof Collection)
         {
             persister.createValues(field, issue.getId(), DB_TYPE, getDbValueFromCollection(value));
         }
         else
         {
+            // With JIRA 5.0 we should no longer need to test for this case
             persister.createValues(field, issue.getId(), DB_TYPE, getDbValueFromCollection(EasyList.build(value)));
         }
     }
 
-    public void updateValue(CustomField field, Issue issue, Object value) {
+    public void updateValue(CustomField field, Issue issue, Collection<Carrier> value) {
         persister.updateValues(field, issue.getId(), DB_TYPE, getDbValueFromCollection(value));
     }
 
@@ -139,7 +146,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
      * Convert a transport object (a Collection of Carrier objects) to
      * its database representation and store it in the database.
      */
-    public void setDefaultValue(FieldConfig fieldConfig, Object value) {
+    public void setDefaultValue(FieldConfig fieldConfig, Collection<Carrier> value) {
         log.debug("setDefaultValue with object " + value);
         Collection carrierStrings = getDbValueFromCollection(value);
         if (carrierStrings != null) {
@@ -153,7 +160,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
      * and convert it to a transport object (a Collection of Carrier
      * objects).
      */
-    public Object getDefaultValue(FieldConfig fieldConfig) {
+    public Collection<Carrier> getDefaultValue(FieldConfig fieldConfig) {
         final Object o = genericConfigManager.retrieve(CustomFieldType.DEFAULT_VALUE_TYPE, fieldConfig.getId().toString());
         log.debug("getDefaultValue with database value " + o);
 
@@ -176,7 +183,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
                     return null;
                 }
                 String dbValue = (String)input;
-                return (Carrier)getSingularObjectFromString(dbValue);
+                return getSingularObjectFromString(dbValue);
             }
         });
         CollectionUtils.filter(collection, NotNullPredicate.getInstance());
@@ -204,7 +211,7 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
      * Extract a transport object from the string parameters,
      * Clearing an amount removes the row.
      */
-    public Object getValueFromCustomFieldParams(CustomFieldParams parameters) 
+    public Collection<Carrier> getValueFromCustomFieldParams(CustomFieldParams parameters) 
         throws FieldValidationException {
         log.debug("getValueFromCustomFieldParams: " + parameters.getKeysAndValues());
         // Strings in the order they appeared in the web page
@@ -250,18 +257,16 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
         return parameters.getAllValues();
     }
 
-    public String getStringFromSingularObject(Object singularObject) {
-        assertObjectImplementsType(Carrier.class, singularObject);
-        Carrier carrier = (Carrier)singularObject;
-        return carrier.toString();
+    public String getStringFromSingularObject(Carrier singularObject) {
+        return singularObject.toString();
     }
 
-    public String getChangelogValue(CustomField field, Object value)  {
+    public String getChangelogValue(CustomField field, Collection<Carrier> value)  {
         if (value == null) {
             return "";
         }
         StringBuffer sb = new StringBuffer();
-        Collection<Carrier> carriers = (Collection<Carrier>) value;
+        Collection<Carrier> carriers = value;
         for (Carrier carrier: carriers) {
             sb.append(carrier.toString()); 
             // Newlines are text not HTML here
@@ -277,13 +282,13 @@ public class MultipleValuesCFType extends AbstractCustomFieldType {
      * Convert the Transport object to a collection of the
      * representation used in the database.
      */
-    private Collection getDbValueFromCollection(final Object value)
+    private Collection getDbValueFromCollection(final Collection<Carrier> value)
     {
         log.debug("getDbValueFromCollection: " + value);
         if (value == null) {
             return Collections.EMPTY_LIST;
         }
-        Collection<Carrier> carriers = (Collection<Carrier>) value;
+        Collection<Carrier> carriers = value;
         List<String> result = new ArrayList<String>();
         for (Carrier carrier : carriers) {
             if (carrier == null) {

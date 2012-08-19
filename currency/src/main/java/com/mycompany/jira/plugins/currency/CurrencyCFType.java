@@ -1,4 +1,4 @@
-package com.mycompany.jira.plugins.currency;
+ package com.mycompany.jira.plugins.currency;
 
 import com.mycompany.jira.plugins.currency.searchers.CurrencyCustomFieldIndexer;
 import com.atlassian.jira.issue.customfields.converters.DoubleConverter;
@@ -36,6 +36,8 @@ public class CurrencyCFType extends NumberCFType {
 
     /**
      * Handle the optional M and K suffixes.
+     *
+     * Note that in JIRA 4.x this method returned an Object.
      */
     public Double getSingularObjectFromString(String numberString)  
         throws FieldValidationException {

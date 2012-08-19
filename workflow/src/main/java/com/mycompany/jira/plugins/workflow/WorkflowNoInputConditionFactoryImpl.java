@@ -2,7 +2,6 @@ package com.mycompany.jira.plugins.workflow;
 
 import com.opensymphony.workflow.loader.AbstractDescriptor;
 import com.atlassian.jira.plugin.workflow.WorkflowPluginConditionFactory;
-
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;

@@ -30,7 +30,7 @@ public class AOExampleAction extends JiraWebActionSupport {
     }
 
     public String doSelect() {
-        Address[] addresses = ao.find(Address.class, Query.select().where("housenumber = ?", "10"));
+        Address[] addresses = ao.find(Address.class, Query.select().where("housenumber = ?", getSelectid()));
         if (addresses.length == 0) {
             setInfo(0);
             return ERROR;
@@ -45,7 +45,7 @@ public class AOExampleAction extends JiraWebActionSupport {
         return info;
     }
     public String getInfoStr() {
-        return "Latest value is " + Integer.toString(info);
+        return "Latest stored ID value is " + Integer.toString(info);
     }
     public void setInfo(int value) {
         info = value;
@@ -56,4 +56,7 @@ public class AOExampleAction extends JiraWebActionSupport {
         selectid = value;
     }
 
+    public String getSelectid() {
+        return selectid;
+    }
 }

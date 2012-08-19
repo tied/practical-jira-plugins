@@ -26,6 +26,7 @@
            location="templates/com/mycompany/jira/plugins/multiple/xml.vm"/>
     </customfield-type>
 
+    <!-- The searcher for this plugin was not ported to JIRA 5.x
     <customfield-searcher key="multiplevaluessearcher" 
                           name="Multple Values Searcher"
                           class="com.mycompany.jira.plugins.multiple.searchers.MultipleValuesSearcher">
@@ -42,5 +43,6 @@
       <valid-customfield-type package="com.mycompany.jira.plugins.multiplevalues" 
                               key="multiple"/>
     </customfield-searcher>
+    -->
 
 </atlassian-plugin>

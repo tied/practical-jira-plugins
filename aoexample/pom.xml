@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany.jira.plugins</groupId>
     <artifactId>aoexample</artifactId>
-    <version>5.0.1</version>
+    <version>5.1.0</version>
 
     <organization>
         <name>Practical JIRA Development</name>
@@ -16,7 +16,9 @@
 
     <name>AO Example</name>
     <description>
-      An example to demonstrate the use of Active Objects
+      An example to demonstrate the use of Active Objects. The single
+      action can be at AOExampleAction.jspa but the source is the
+      sample.
     </description>
     <packaging>atlassian-plugin</packaging>
 
@@ -30,7 +32,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.6</version>
+            <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -40,11 +42,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- This is an extra dependency -->
+        <!-- This is an extra dependency for AO -->
         <dependency>
           <groupId>com.atlassian.activeobjects</groupId>
           <artifactId>activeobjects-plugin</artifactId>
-          <version>0.13.2</version>
+          <version>0.19.7</version>
           <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -54,7 +56,7 @@
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>maven-jira-plugin</artifactId>
-                <version>3.3.4</version>
+                <version>3.11</version>
                 <extensions>true</extensions>
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
@@ -72,8 +74,8 @@
     </build>
 
     <properties>
-        <jira.version>5.0</jira.version>
-        <jira.data.version>5.0</jira.data.version>
+        <jira.version>5.1</jira.version>
+        <jira.data.version>5.1</jira.data.version>
     </properties>
 
 </project>

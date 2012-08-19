@@ -26,6 +26,7 @@
         <action name="com.mycompany.jira.plugins.aoexample.AOExampleAction" 
                 alias="AOExampleAction">
           <view name="success">/templates/com/mycompany/jira/plugins/aoexample/view.vm</view>
+          <view name="error">/templates/com/mycompany/jira/plugins/aoexample/error.vm</view>
           <view name="securitybreach">/secure/views/securitybreach.jsp</view>
         </action>
       </actions>

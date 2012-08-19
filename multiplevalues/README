@@ -5,3 +5,5 @@ Matthew B. Doar
 Custom Field Type Example #4
 
 This plugin provides a custom field type for with multiple values.
+ 
+NOTE: the searcher for this plugin was not ported to JIRA 5.x
