@@ -14,7 +14,8 @@ import com.atlassian.jira.web.FieldVisibilityManager;
 import org.apache.log4j.Logger;
 
 /**
- * A searcher class that reuses an existing searcher.
+ * A searcher class that reuses an existing searcher and adds the ability to
+ * display results in statistics gadgets and reports.
  */
 public class CurrencyStattableSearcher extends ExactNumberSearcher implements CustomFieldStattable {
 
