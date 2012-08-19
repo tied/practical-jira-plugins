@@ -38,13 +38,14 @@ public class WorkflowWithInputPostfunctionFactoryImpl
         getVelocityParamsForView(velocityParams, descriptor);
     }
 
-    // This controls what is passed into the validate method of the
-    // MyCustomCondition class
+    // This controls what is passed into the execute method of the
+    // FunctionWithConfig class
     public Map getDescriptorParams(Map functionParams) {
         // Read the one parameter we care about from the input velocity template
         String value = extractSingleParam(functionParams, "mycurrentvalue");
 
-        // This key is what MyCustomCondition will look for in the args variable
+        // This key is what FunctionWithConfig will look for in the
+        // args variable
         return EasyMap.build("mycurrentvalue", value);
     }
 }

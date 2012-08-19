@@ -41,12 +41,13 @@ public class WorkflowWithInputValidatorFactoryImpl
     }
 
     // This controls what is passed into the validate method of the
-    // MyCustomCondition class
+    // ValidatorWithConfig class
     public Map getDescriptorParams(Map validatorParams) {
         // Read the one parameter we care about from the input velocity template
         String value = extractSingleParam(validatorParams, "mycurrentvalue");
 
-        // This key is what MyCustomCondition will look for in the args variable
+        // This key is what ValidatorWithConfig will look for in the
+        // args variable
         return EasyMap.build("mycurrentvalue", value);
     }
 }
