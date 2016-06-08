@@ -1,4 +1,4 @@
-package com.mycompany.jira.plugins.currency;
+package com.pduleba.jira.plugins.fields.currency;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import com.atlassian.jira.web.action.admin.customfields.AbstractEditConfiguratio
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class EditConfiguration extends AbstractEditConfigurationItemAction {
+public class EditConfigurationAction extends AbstractEditConfigurationItemAction {
 
 	private static final long serialVersionUID = 816164801314288847L;
 
-	public EditConfiguration(ManagedConfigurationItemService managedConfigurationItemService) {
+	public EditConfigurationAction(ManagedConfigurationItemService managedConfigurationItemService) {
     	super(managedConfigurationItemService);
     }
 

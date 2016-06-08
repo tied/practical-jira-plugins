@@ -1,4 +1,4 @@
-package com.mycompany.jira.plugins.currency;
+package com.pduleba.jira.plugins.fields.currency;
 
 import java.util.Currency;
 import java.util.HashMap;

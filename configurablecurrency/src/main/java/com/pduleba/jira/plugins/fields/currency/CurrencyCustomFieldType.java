@@ -1,4 +1,4 @@
-package com.mycompany.jira.plugins.currency;
+package com.pduleba.jira.plugins.fields.currency;
 
 import java.util.List;
 import java.util.Map;
@@ -13,9 +13,9 @@ import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.jira.issue.fields.config.FieldConfigItemType;
 import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
 
-public class CurrencyCFType extends NumberCFType {
+public class CurrencyCustomFieldType extends NumberCFType {
 
-    public CurrencyCFType(final CustomFieldValuePersister customFieldValuePersister, 
+    public CurrencyCustomFieldType(final CustomFieldValuePersister customFieldValuePersister, 
                           final DoubleConverter doubleConverter, 
                           final GenericConfigManager genericConfigManager) {
         super(customFieldValuePersister,
@@ -30,7 +30,7 @@ public class CurrencyCFType extends NumberCFType {
     @Override
     public List<FieldConfigItemType> getConfigurationItemTypes() {
         final List<FieldConfigItemType> configurationItemTypes = super.getConfigurationItemTypes();
-        configurationItemTypes.add(new CurrencyConfigItem());
+        configurationItemTypes.add(new CurrencyCustomFieldConfiguration());
         return configurationItemTypes;
     }
 

@@ -1,4 +1,4 @@
-package com.mycompany.jira.plugins.currency;
+package com.pduleba.jira.plugins.fields.currency;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -9,7 +9,7 @@ import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.jira.issue.fields.config.FieldConfigItemType;
 import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
 
-public class CurrencyConfigItem implements FieldConfigItemType {
+public class CurrencyCustomFieldConfiguration implements FieldConfigItemType {
 
     // The name of this kind of configuration, as seen in the field
     // configuration scheme

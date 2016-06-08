@@ -1,0 +1,2 @@
+<input type="text" name="$customField.id" value="$currentUser"
+id="$customField.id" class="textfield" readonly="readonly" />

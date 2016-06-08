@@ -1,27 +1,33 @@
-<atlassian-plugin key="${project.groupId}.${project.artifactId}"
-                  name="${project.name}"
-                  plugins-version="2">
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
     <plugin-info>
         <description>${project.description}</description>
         <version>${project.version}</version>
-        <vendor name="${project.organization.name}" 
-                url="${project.organization.url}" />
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
     </plugin-info>
 
-    <customfield-type key="configurablecurrency" 
-                      name="Configurable Currency"
-                      class="com.mycompany.jira.plugins.currency.CurrencyCFType">
-      <description>
-        A configurable custom field type for currency.
-      </description>
-      
-      <resource type="velocity" 
-                name="view" 
-           location="templates/com/mycompany/jira/plugins/configurablecurrency/view.vm"/>
-      <resource type="velocity" 
-                name="edit" 
-           location="templates/com/mycompany/jira/plugins/configurablecurrency/edit.vm"/>
+    <customfield-type key="configurablecurrency" name="Configurable Currency Custom Field" 
+    	class="com.pduleba.jira.plugins.fields.currency.CurrencyCustomFieldType">
+    	<description>A configurable currency custom field.</description>
+    	<resource type="velocity" name="view" location="com/pduleba/jira/plugins/fields/currency/template/view.vm"/>
+    	<resource type="velocity" name="edit" location="com/pduleba/jira/plugins/fields/currency/template/edit.vm"/>
     </customfield-type>
+
+	<customfield-type key="issue-creator" name="Issue Creator Custom Field" 
+		class="com.pduleba.jira.plugins.fields.creator.IssueCreatorCustomFieldType">
+		<description>Read Only User CF Description</description>
+		<!--  -->
+		<!-- 'view' resource controls how a field’s value appears in the view screen. -->
+		<resource type="velocity" name="view" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
+		<!-- 'edit' resource controls how a field’s value appears in the edit screen. -->
+		<resource type="velocity" name="edit" location="com/pduleba/jira/plugins/fields/creator/template/edit.vm" />
+		<!-- 'xml' resource controls how a field’s value appears when viewing an issue as XML. -->
+		<resource type="velocity" name="xml" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
+		<!-- 'column-view' resource controls how a field’s value appears in the Issue Navigator. -->
+		<resource type="velocity" name="column-view" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
+		<!-- Less commonly-used resources are 
+			 'edit-default' - for what a default value looks like when you’re setting it 
+			 'bulk-move'    - for when more than one issue is being updated. -->
+	</customfield-type>
 
     <webwork1 key="currencyconfigaction" 
               name="Currency configuration action" 
@@ -31,9 +37,9 @@
       </description>
 
       <actions>
-        <action name="com.mycompany.jira.plugins.currency.EditConfiguration" 
-                alias="EditCurrencyConfig">
-          <view name="input">/templates/com/mycompany/jira/plugins/configurablecurrency/edit-config.vm</view>
+        <action name="com.pduleba.jira.plugins.fields.currency.EditConfigurationAction" 
+                alias="EditConfigurationAction">
+          <view name="input">com/pduleba/jira/plugins/fields/currency/template/edit-config.vm</view>
           <view name="securitybreach">/secure/views/securitybreach.jsp</view>
         </action>
       </actions>
