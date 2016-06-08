@@ -17,7 +17,7 @@
   Select a currency for displaying the value of the currency field.
 </p>
 
-<form action="EditCurrencyConfig.jspa" method="post">
+<form action="EditConfigurationAction.jspa" method="post">
   
   <table>
     <tr>

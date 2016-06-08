@@ -63,6 +63,14 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>${project.build.sourceDirectory}</directory>
+				<includes>
+					<include>**/*.vm</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>com.atlassian.maven.plugins</groupId>

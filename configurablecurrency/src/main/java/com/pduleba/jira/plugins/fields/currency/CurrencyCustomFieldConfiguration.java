@@ -46,7 +46,7 @@ public class CurrencyCustomFieldConfiguration implements FieldConfigItemType {
 
     // Where the Edit link should redirect to when it's clicked on
     public String getBaseEditUrl() {
-        return "EditCurrencyConfig.jspa";
+        return "EditConfigurationAction.jspa";
     }
 
 }
