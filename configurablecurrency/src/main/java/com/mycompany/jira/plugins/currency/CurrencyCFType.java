@@ -1,20 +1,17 @@
 package com.mycompany.jira.plugins.currency;
 
-import com.atlassian.jira.issue.customfields.impl.FieldValidationException;
+import java.util.List;
+import java.util.Map;
+
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.customfields.converters.DoubleConverter;
 import com.atlassian.jira.issue.customfields.impl.NumberCFType;
 import com.atlassian.jira.issue.customfields.manager.GenericConfigManager;
 import com.atlassian.jira.issue.customfields.persistence.CustomFieldValuePersister;
-import com.atlassian.jira.issue.customfields.view.CustomFieldParams;
 import com.atlassian.jira.issue.fields.CustomField;
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.jira.issue.fields.config.FieldConfigItemType;
 import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
-import com.atlassian.jira.util.velocity.NumberTool;
-import java.util.Currency;
-import java.util.List;
-import java.util.Map;
 
 public class CurrencyCFType extends NumberCFType {
 

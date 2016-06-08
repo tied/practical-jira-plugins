@@ -1,13 +1,13 @@
 package com.mycompany.jira.plugins.currency;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.atlassian.jira.issue.fields.config.FieldConfigItemType;
 import com.atlassian.jira.issue.fields.layout.field.FieldLayoutItem;
-import java.util.Currency;
-import java.util.Locale;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CurrencyConfigItem implements FieldConfigItemType {
 
@@ -38,7 +38,7 @@ public class CurrencyConfigItem implements FieldConfigItemType {
 
     // Return the Object used in the Velocity edit context in $configs
     public Object getConfigurationObject(Issue issue, FieldConfig config) {
-        Map result = new HashMap();
+        Map<String, Object> result = new HashMap<>();
         result.put("currencyLocale", DAO.getCurrentLocale(config));
         result.put("currencySymbol", DAO.getCurrentSymbol(config));
         return result;

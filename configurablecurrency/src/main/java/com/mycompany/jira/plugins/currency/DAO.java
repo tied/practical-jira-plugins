@@ -1,13 +1,14 @@
 package com.mycompany.jira.plugins.currency;
 
+import java.util.Currency;
+import java.util.HashMap;
+import java.util.Locale;
+
+import org.apache.log4j.Logger;
+
 import com.atlassian.jira.issue.fields.config.FieldConfig;
 import com.opensymphony.module.propertyset.PropertySet;
 import com.opensymphony.module.propertyset.PropertySetManager;
-import java.util.Locale;
-import java.util.Currency;
-import java.util.HashMap;
-import java.util.Map;
-import org.apache.log4j.Logger;
 
 /**
  * DAO - Data Access Object
@@ -25,7 +26,7 @@ public class DAO {
 
     private static PropertySet getPS() {
         if (ofbizPs == null) {
-            HashMap ofbizArgs = new HashMap();
+            HashMap<String, Object> ofbizArgs = new HashMap<String, Object>();
             ofbizArgs.put("delegator.name", "default");
             ofbizArgs.put("entityName", "currency_fields");
             ofbizArgs.put("entityId", new Long(ENTITY_ID));

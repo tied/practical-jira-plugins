@@ -1,19 +1,23 @@
 package com.mycompany.jira.plugins.currency;
 
-import java.util.Currency;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.TreeMap;
-import com.atlassian.jira.security.xsrf.RequiresXsrfCheck;
-import com.atlassian.jira.security.Permissions;
 
+import com.atlassian.jira.config.managedconfiguration.ManagedConfigurationItemService;
 import com.atlassian.jira.web.action.admin.customfields.AbstractEditConfigurationItemAction;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class EditConfiguration extends AbstractEditConfigurationItemAction {
 
-    public EditConfiguration() {
+	private static final long serialVersionUID = 816164801314288847L;
+
+	public EditConfiguration(ManagedConfigurationItemService managedConfigurationItemService) {
+    	super(managedConfigurationItemService);
     }
 
     // This is not used in the sample but would be used in production
@@ -34,10 +38,6 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
     // This is not used in the sample but would be used in production
     // @RequiresXsrfCheck
     protected String doExecute() throws Exception {
-        if (!isHasPermission(Permissions.ADMINISTER)) {
-            return "securitybreach";
-        }
-
         // We could handle a cancel by setting the same value again
 
         // The first time the page is loaded retrieve any existing configuration
@@ -55,7 +55,7 @@ public class EditConfiguration extends AbstractEditConfigurationItemAction {
         DAO.updateStoredValue(getFieldConfig(), getLocalestr());
 
         // Redirect to the custom field configuration screen
-        String save = request.getParameter("Save");
+        String save = getHttpRequest().getParameter("Save");
         if (save != null && save.equals("Save")) {
             setReturnUrl("/secure/admin/ConfigureCustomField!default.jspa?customFieldId=" + getFieldConfig().getCustomField().getIdAsLong().toString());
             return getRedirect("not used");

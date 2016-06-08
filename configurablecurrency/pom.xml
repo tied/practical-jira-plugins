@@ -1,80 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mycompany.jira.plugins</groupId>
-    <artifactId>configurablecurrency</artifactId>
-    <version>5.1.0</version>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.mycompany.jira.plugins</groupId>
+	<artifactId>configurablecurrency</artifactId>
+	<version>7.1.2</version>
 
-    <organization>
-        <name>Practical JIRA Development</name>
-        <url>https://plugins.atlassian.com/manage/plugin/41293</url>
-    </organization>
+	<organization>
+		<name>Practical JIRA Development</name>
+		<url>https://plugins.atlassian.com/manage/plugin/41293</url>
+	</organization>
 
-    <name>Configurable Currency</name>
-    <description>
+	<name>Configurable Currency</name>
+	<description>
       This plugin provides a configurable custom field type for currency.
     </description>
-    <packaging>atlassian-plugin</packaging>
+	<packaging>atlassian-plugin</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.atlassian.jira</groupId>
-            <artifactId>atlassian-jira</artifactId>
-            <version>${jira.version}</version>
-            <scope>provided</scope>
-        </dependency>        
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.jira</groupId>
-            <artifactId>jira-func-tests</artifactId>
-            <version>${jira.version}</version>
-            <scope>test</scope>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>com.atlassian.jira</groupId>
+			<artifactId>jira-api</artifactId>
+			<version>${jira.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.jira</groupId>
+			<artifactId>jira-core</artifactId>
+			<version>${jira.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.jira</groupId>
+			<artifactId>jira-func-tests</artifactId>
+			<version>${jira.version}</version>
+			<scope>test</scope>
+		</dependency>
 
-        <!-- Used in EditConfiguration -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+		<!-- Used in EditConfiguration -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.atlassian.maven.plugins</groupId>
-                <artifactId>maven-jira-plugin</artifactId>
-                <version>3.11</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <productVersion>${jira.version}</productVersion>
-                    <productDataVersion>${jira.data.version}</productDataVersion>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-jira-plugin</artifactId>
+				<version>${maven-jira-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<productVersion>${jira.version}</productVersion>
+					<productDataVersion>${jira.data.version}</productDataVersion>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
-    <properties>
-        <jira.version>5.1</jira.version>
-        <jira.data.version>5.1</jira.data.version>
-    </properties>
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss Z</maven.build.timestamp.format>
+
+		<jira.version>7.1.2</jira.version>
+		<jira.data.version>7.1.2</jira.data.version>
+
+		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+		<maven-jira-plugin.version>6.2.3</maven-jira-plugin.version>
+		<junit.version>4.12</junit.version>
+		<lombok.version>1.16.6</lombok.version>
+	</properties>
 
 </project>
