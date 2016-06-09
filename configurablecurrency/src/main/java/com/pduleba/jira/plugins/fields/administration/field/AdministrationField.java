@@ -6,9 +6,9 @@ import com.atlassian.jira.issue.customfields.persistence.CustomFieldValuePersist
 import com.atlassian.jira.issue.fields.TextFieldCharacterLengthValidator;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 
-public class ReadOnlyField extends GenericTextCFType {
+public class AdministrationField extends GenericTextCFType {
 
-	protected ReadOnlyField(CustomFieldValuePersister customFieldValuePersister,
+	protected AdministrationField(CustomFieldValuePersister customFieldValuePersister,
 			GenericConfigManager genericConfigManager,
 			TextFieldCharacterLengthValidator textFieldCharacterLengthValidator,
 			JiraAuthenticationContext jiraAuthenticationContext) {
