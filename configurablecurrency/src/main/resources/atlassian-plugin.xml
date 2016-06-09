@@ -16,17 +16,30 @@
 		class="com.pduleba.jira.plugins.fields.creator.IssueCreatorCustomFieldType">
 		<description>Read Only User CF Description</description>
 		<!--  -->
-		<!-- 'view' resource controls how a field’s value appears in the view screen. -->
+		<!-- 'view' - Provides a basic read-only view of the field value. 
+					  REQUIRED -->
 		<resource type="velocity" name="view" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
-		<!-- 'edit' resource controls how a field’s value appears in the edit screen. -->
+		<!-- 'edit' - Renders the edit widget in issue creation, editing issues, and editing defaults. 
+				      This is the value you'll replace with your custom Velocity template. 
+				      REQUIRED -->
 		<resource type="velocity" name="edit" location="com/pduleba/jira/plugins/fields/creator/template/edit.vm" />
-		<!-- 'xml' resource controls how a field’s value appears when viewing an issue as XML. -->
+		<!-- 'xml'  - Shows the value in XML format for RSS or XML exports.
+				   	  REQUIRED -->
 		<resource type="velocity" name="xml" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
-		<!-- 'column-view' resource controls how a field’s value appears in the Issue Navigator. -->
+		<!-- 'column-view' - Read-only view for displaying in the issue navigator. 
+		                     The issue navigator will display the view value if omitted. 
+		                     NOT REQUIRED -->
 		<resource type="velocity" name="column-view" location="com/pduleba/jira/plugins/fields/creator/template/view.vm" />
 		<!-- Less commonly-used resources are 
 			 'edit-default' - for what a default value looks like when you’re setting it 
 			 'bulk-move'    - for when more than one issue is being updated. -->
+	</customfield-type>
+
+	<customfield-type key="admintextfield" name="Admin Editable Text Field" 
+		class="com.pduleba.jira.plugins.fields.custom.JiraCustomField">
+		<resource type="velocity" name="view" location="com/pduleba/jira/plugins/fields/administration/field/template/view.vm"/>
+		<resource type="velocity" name="edit" location="com/pduleba/jira/plugins/fields/administration/field/template/edit-jiraadminonlytext.vm"/>
+		<resource type="velocity" name="xml" location="templates/plugins/fields/xml/xml-basictext.vm"/>
 	</customfield-type>
 
     <webwork1 key="currencyconfigaction" 
