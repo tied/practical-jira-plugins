@@ -36,7 +36,7 @@
 	</customfield-type>
 
 	<customfield-type key="admintextfield" name="Admin Editable Text Field" 
-		class="com.pduleba.jira.plugins.fields.custom.JiraCustomField">
+		class="com.pduleba.jira.plugins.fields.administration.field.ReadOnlyField">
 		<resource type="velocity" name="view" location="com/pduleba/jira/plugins/fields/administration/field/template/view.vm"/>
 		<resource type="velocity" name="edit" location="com/pduleba/jira/plugins/fields/administration/field/template/edit-jiraadminonlytext.vm"/>
 		<resource type="velocity" name="xml" location="templates/plugins/fields/xml/xml-basictext.vm"/>
